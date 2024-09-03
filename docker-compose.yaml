@@ -17,6 +17,15 @@ services:
       db:
         condition: service_healthy
 
+  nginx:
+        restart: always
+        build:
+            context: ./nginx
+        networks:
+          - node-network
+        ports:
+            - "80:80"
+
   db:
     image: mysql:5.7
     command: --innodb-use-native-aio=0
@@ -28,7 +37,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: nodedb
-      # MYSQL_USER: root
     networks:
       - node-network
     healthcheck:
