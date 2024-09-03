@@ -3,12 +3,12 @@ version: '3.7'
 services:
   app:
     build:
-      context: .
+      context: ./node
     container_name: app
     networks:
       - node-network
     volumes:
-      - ./:/usr/src/app
+      - ./node:/usr/src/app
       - /usr/src/app/node_modules
     tty: true
     ports:
